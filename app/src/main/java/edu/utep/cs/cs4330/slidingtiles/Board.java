@@ -34,7 +34,7 @@ public class Board implements Serializable{
     public Board(int size) {
         this.size = size;
         this.places = new ArrayList<Place>();
-        int count = 0;
+        int count = -1;
         for(int col = 0; col < size; col++){
             for(int row = 0; row < size; row++){
                 Place newPlace = new Place(col, row, count);

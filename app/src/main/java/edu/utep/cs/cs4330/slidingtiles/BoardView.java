@@ -213,6 +213,7 @@ public class BoardView extends View {
             shotPaint.setTextSize(60);
             //paint.setTextAlign(Paint.Align.CENTER);
 
+            if(currentPlace.getValue() == -1) continue;
             canvas.drawText(""+currentPlace.getValue(), currentPlace.getX()*lineGap()+lineGap()/2, currentPlace.getY()*lineGap()+lineGap()/2, shotPaint);
         }
     }
