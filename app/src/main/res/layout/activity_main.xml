@@ -8,11 +8,36 @@
 
 
 
-    <edu.utep.cs.cs4330.slidingtiles.BoardView
-        android:id="@+id/boardView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        />
+        android:orientation="vertical">
+
+        <edu.utep.cs.cs4330.slidingtiles.BoardView
+            android:id="@+id/boardView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="8dp" />
+
+        <TextView
+            android:id="@+id/numMoves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Number of moves: 0"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="New Game"
+            android:onClick="newGame"/>
+
+
+
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

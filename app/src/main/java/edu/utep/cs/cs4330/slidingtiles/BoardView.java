@@ -111,14 +111,6 @@ public class BoardView extends View {
         shotPaint.setColor(shotColor);
     }
 
-    /** Ship color*/
-    private final int shipColor = Color.rgb(255, 25, 0);
-
-    /**Ship paint*/
-    private final Paint shipPaint = new Paint(Paint.ANTI_ALIAS_FLAG);{
-        shipPaint.setColor(shipColor);
-    }
-
     /** Board grid line color. */
     private final int boardLineColor = Color.WHITE;
 
@@ -128,11 +120,12 @@ public class BoardView extends View {
         boardLinePaint.setStrokeWidth(2);
     }
 
-    /** Green color*/
-    private final int greenColor = Color.rgb(100, 200, 50);
-    private final Paint greenPaint = new Paint(Paint.ANTI_ALIAS_FLAG);{
-        greenPaint.setColor(greenColor);
-        greenPaint.setStrokeWidth(2);
+    /** Shot color*/
+    private final int emptyTileColor = Color.rgb(0, 255, 255);
+
+    /**Shot paint*/
+    private final Paint emptyTilePaint = new Paint(Paint.ANTI_ALIAS_FLAG);{
+        emptyTilePaint.setColor(emptyTileColor);
     }
 
 
@@ -210,11 +203,22 @@ public class BoardView extends View {
 //            canvas.drawRect((currentPlace.getX()) * lineGap() + 2, (currentPlace.getY()) * lineGap() + 2, (currentPlace.getX() + 1) * lineGap(), (currentPlace.getY() + 1) * lineGap(), shotPaint);
 
             shotPaint.setColor(Color.BLACK);
-            shotPaint.setTextSize(60);
+            shotPaint.setTextSize(lineGap()/2);
             //paint.setTextAlign(Paint.Align.CENTER);
 
-            if(currentPlace.getValue() == -1) continue;
-            canvas.drawText(""+currentPlace.getValue(), currentPlace.getX()*lineGap()+lineGap()/2, currentPlace.getY()*lineGap()+lineGap()/2, shotPaint);
+            if(currentPlace.getValue() == 0) {
+                canvas.drawRect((currentPlace.getX()) * lineGap() + 2, (currentPlace.getY()) * lineGap() + 2, (currentPlace.getX() + 1) * lineGap(), (currentPlace.getY() + 1) * lineGap(), emptyTilePaint);
+                continue;
+            }
+
+            //Slighlty different positioning if the number is a 2 digit number in order to center it in the tile
+            else if(currentPlace.getValue() > 9){
+                canvas.drawText("" + currentPlace.getValue(), currentPlace.getX() * lineGap() + lineGap() / 4, currentPlace.getY() * lineGap() + lineGap() / 2 + lineGap()/6, shotPaint);
+            }
+
+            else {
+                canvas.drawText("" + currentPlace.getValue(), currentPlace.getX() * lineGap() + lineGap() / 4 + lineGap()/7 , currentPlace.getY() * lineGap() + lineGap() / 2 + lineGap()/6, shotPaint);
+            }
         }
     }
 
