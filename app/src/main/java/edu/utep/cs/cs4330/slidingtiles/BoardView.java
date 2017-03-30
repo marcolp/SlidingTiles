@@ -281,29 +281,29 @@ public class BoardView extends View {
 
     public void createNewGameDialog(){
 
-//        AlertDialog.Builder builder2 = new AlertDialog.Builder(this.getContext());
-//        builder2.setTitle("New Game");
-//        builder2.setMessage("All progress will be lost. Continue?");
-//        builder2.setCancelable(true);
-//
-//        builder2.setPositiveButton(
-//                "Yes",
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//        builder2.setNegativeButton(
-//                "No",
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//        newGameDialog = builder2.create();
-//        newGameDialog.show();
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(this.getContext());
+        builder2.setTitle("New Game");
+        builder2.setMessage("All progress will be lost. Continue?");
+        builder2.setCancelable(true);
+
+        builder2.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        builder2.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        newGameDialog = builder2.create();
+        newGameDialog.show();
     }
     /**=====================================DIALOG STUFF===========================================================*/
 

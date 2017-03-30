@@ -49,7 +49,24 @@ public class Board implements Parcelable{
             }
         }
 
-        rearrange();
+        places.get(0).setValue(1);
+        places.get(1).setValue(2);
+        places.get(2).setValue(3);
+        places.get(3).setValue(4);
+        places.get(4).setValue(5);
+        places.get(5).setValue(6);
+        places.get(6).setValue(7);
+        places.get(7).setValue(8);
+        places.get(8).setValue(9);
+        places.get(9).setValue(10);
+        places.get(10).setValue(12);
+        places.get(11).setValue(11);
+        places.get(12).setValue(13);
+        places.get(13).setValue(14);
+        places.get(14).setValue(0);
+        places.get(15).setValue(15);
+
+//        rearrange();
         boolean solvable = isSolvable();
         while(!solvable){
             Log.d("Rearranging","Configuration was not solvable, rearranging");
@@ -57,6 +74,22 @@ public class Board implements Parcelable{
             solvable = isSolvable();
         }
     }
+
+    protected Board(Parcel in) {
+        size = in.readInt();
+    }
+
+    public static final Creator<Board> CREATOR = new Creator<Board>() {
+        @Override
+        public Board createFromParcel(Parcel in) {
+            return new Board(in);
+        }
+
+        @Override
+        public Board[] newArray(int size) {
+            return new Board[size];
+        }
+    };
 
     /** Return the size of this board. */
     public int getSize() {
@@ -117,7 +150,19 @@ public class Board implements Parcelable{
 
         //Identifies whether the empty tile is on an even row starting from the bottom (e.g.: the last row is odd, second to last is even etc)
         boolean evenRow = false;
-        if(evenWidth == (getEmptyTile().getY() % 2 == 0)) evenRow = evenWidth;
+
+        //If there is an even number of rows, then the row indexes (0,1,2,3,etc) will be the same odd or even as starting from the bottom up.
+        //We don't care if they are different numbers, we only care whether the numbers are even or odd
+        if(evenWidth) {
+            if(getEmptyTile().getY() % 2 == 0) evenRow = true;
+        }
+
+        //If there is an odd number or rows, then the row indexes + 1 will be the same odd or even as starting from the bottom up.
+        //We don't care if they are different numbers, we only care whether the numbers are even or odd
+        else{
+            if(getEmptyTile().getY()+1 % 2 == 0) evenRow = true;
+        }
+
 
         //If the board is of odd length
         if(!evenWidth) {
@@ -242,6 +287,6 @@ public class Board implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeInt(size);
     }
 }
