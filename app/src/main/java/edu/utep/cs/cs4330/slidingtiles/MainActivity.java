@@ -3,7 +3,6 @@ package edu.utep.cs.cs4330.slidingtiles;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,23 +51,27 @@ int numMoves = 0;
 
                 Place placeTouched = tileBoard.getPlace(x, y);
 
-                if(isNeighbor(placeTouched)){
+                if(isNeighbor(placeTouched)) {
                     numMoves++;
-                    numMovesTextView.setText("Number of moves: "+numMoves);
+                    numMovesTextView.setText("Number of moves: " + numMoves);
 
                     tileBoard.getEmptyTile().setValue(placeTouched.getValue());
 
                     placeTouched.setValue(0);
 
-                    if(tileBoard.isSolved()) {
-                        tileBoardView.createGameOverDialog("You Win!");
-                        tileBoardView.gameOverDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                finish();
-                                System.exit(0);
-                            }
-                        });
+                    if (tileBoard.places().get(tileBoard.places().size() - 1).getValue() == 0) {
+                        if (tileBoard.isSolved()) {
+                            tileBoardView.createGameOverDialog("You Win!");
+                            tileBoardView.gameOverDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    tileBoard.newBoard();
+                                    numMoves = 0;
+                                    numMovesTextView.setText("Number of moves: " + numMoves);
+                                    tileBoardView.redraw();
+                                }
+                            });
+                        }
                     }
                 }
 
@@ -90,7 +93,7 @@ int numMoves = 0;
         @Override
         public void onDialogPositiveClick(DialogFragment dialog) {
             // User touched the dialog's positive button
-            tileBoard.rearrange();
+            tileBoard.newBoard();
             numMoves = 0;
             numMovesTextView.setText("Number of moves: "+numMoves);
             tileBoardView.redraw();
