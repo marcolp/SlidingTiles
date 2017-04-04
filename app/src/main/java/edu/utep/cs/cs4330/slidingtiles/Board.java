@@ -49,26 +49,19 @@ public class Board implements Parcelable{
             }
         }
 
-        places.get(0).setValue(1);
-        places.get(1).setValue(2);
-        places.get(2).setValue(3);
-        places.get(3).setValue(4);
-        places.get(4).setValue(5);
-        places.get(5).setValue(6);
-        places.get(6).setValue(7);
-        places.get(7).setValue(8);
-        places.get(8).setValue(9);
-        places.get(9).setValue(10);
-        places.get(10).setValue(12);
-        places.get(11).setValue(11);
-        places.get(12).setValue(13);
-        places.get(13).setValue(14);
-        places.get(14).setValue(0);
-        places.get(15).setValue(15);
 
-//        rearrange();
+        places.get(0).setValue(3);
+        places.get(1).setValue(2);
+        places.get(2).setValue(0);
+        places.get(3).setValue(1);
+        newBoard();
+
+    }
+
+    public void newBoard(){
+        rearrange();
         boolean solvable = isSolvable();
-        while(!solvable){
+        while(!solvable || isSolved()){
             Log.d("Rearranging","Configuration was not solvable, rearranging");
             rearrange();
             solvable = isSolvable();

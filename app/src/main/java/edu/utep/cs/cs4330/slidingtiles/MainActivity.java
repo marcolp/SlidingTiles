@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 /** Marco Lopez
 * CS 5390 - Mobile Application Development
-* 2/14/2017
+* 3/30/2017
 *
 * This is the controller in the MVC
 */
